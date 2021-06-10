@@ -23,6 +23,9 @@ public class AWSDBConfiguration {
 
     private static Gson gson = new Gson();
 
+    private String accessKey = "";
+    private String secretKey = "";
+
     @Bean
     public DataSource dataSource() {
 
@@ -43,7 +46,7 @@ public class AWSDBConfiguration {
         // Create a Secrets Manager client
         AWSSecretsManager client  = AWSSecretsManagerClientBuilder.standard()
                 .withRegion(region)
-                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("AKIAWSLBRN7FCMSV43KQ", "XZ6U0ua7XUJ1hGfwyEu6peGG/hdnetAFXeA27mJO")))
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
                 .build();
 
         // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
